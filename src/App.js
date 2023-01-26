@@ -1,25 +1,528 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
-function App() {
+const transitionInterval = 500;
+
+const App = () => {
+  const [shapes, setShapes] = useState(settings[0]);
+
+  const getRandomInt = (max) => Math.floor(Math.random() * max);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setShapes(settings[getRandomInt(settings.length)]),
+      3000
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid h-screen place-items-center">
+      <div className="w-[60%] aspect-[1.618] relative">
+        {shapes.map((shape) => (
+          <div
+            className={`
+              ${shape.left} 
+              ${shape.top} 
+              ${shape.height} 
+              ${shape.width} 
+              ${shape.color} 
+              ${shape.rounded_bl} 
+              ${shape.rounded_br} 
+              ${shape.rounded_tl} 
+              ${shape.rounded_tr} 
+              absolute 
+              ease-in-out 
+              duration-1000
+            `}
+          ></div>
+        ))}
+        <div className="font-extrabold text-4xl underline-offset-4 underline absolute top-[102%] right-[0%] font-mono">
+          VINAYAK FIALOK
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+const settings = [
+  [
+    {
+      left: "left-[0%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-one",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[20%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-two",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-three",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[30%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-four",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[50%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[50%]",
+      color: "bg-five",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-six",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[80%]",
+      top: "top-[70%]",
+      height: "h-[30%]",
+      width: "w-[20%]",
+      color: "bg-seven",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+  [
+    {
+      left: "left-[0%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-one",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[50%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[50%]",
+      color: "bg-five",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-six",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[80%]",
+      top: "top-[70%]",
+      height: "h-[30%]",
+      width: "w-[20%]",
+      color: "bg-seven",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[20%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-two",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-three",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[30%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-four",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+  [
+    {
+      left: "left-[40%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[60%]",
+      color: "bg-five",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-six",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[80%]",
+      top: "top-[70%]",
+      height: "h-[32%]",
+      width: "w-[20%]",
+      color: "bg-seven",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[20%]",
+      height: "h-[31.5%]",
+      width: "w-[20%]",
+      color: "bg-one",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[20%]",
+      top: "top-[0%]",
+      height: "h-[62%]",
+      width: "w-[38%]",
+      color: "bg-two",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[50%]",
+      height: "h-[54%]",
+      width: "w-[34%]",
+      color: "bg-three",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[28%]",
+      top: "top-[50%]",
+      height: "h-[35%]",
+      width: "w-[22%]",
+      color: "bg-four",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+  [
+    {
+      left: "left-[30%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-four",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "rounded-bl-full",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[20%]",
+      color: "bg-one",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "rounded-bl-full",
+      rounded_br: "",
+    },
+    {
+      left: "left-[20%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-two",
+      rounded_tl: "rounded-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-three",
+      rounded_tl: "",
+      rounded_tr: "rounded-tr-full",
+      rounded_bl: "",
+      rounded_br: "rounded-br-full",
+    },
+    {
+      left: "left-[50%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[50%]",
+      color: "bg-five",
+      rounded_tl: "",
+      rounded_tr: "rounded-tr-full",
+      rounded_bl: "",
+      rounded_br: "rounded-br-full",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[50%]",
+      height: "h-[50%]",
+      width: "w-[30%]",
+      color: "bg-six",
+      rounded_tl: "rounded-tl-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[80%]",
+      top: "top-[70%]",
+      height: "h-[30%]",
+      width: "w-[20%]",
+      color: "bg-seven",
+      rounded_tl: "rounded-tl-full",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+  [
+    {
+      left: "left-[0%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[7%]",
+      color: "bg-one",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[7%]",
+      top: "top-[0%]",
+      height: "h-[70%]",
+      width: "w-[10%]",
+      color: "bg-two",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[17%]",
+      top: "top-[20%]",
+      height: "h-[80%]",
+      width: "w-[13%]",
+      color: "bg-three",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[30%]",
+      top: "top-[20%]",
+      height: "h-[50%]",
+      width: "w-[10%]",
+      color: "bg-four",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[40%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[30%]",
+      color: "bg-five",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[10%]",
+      height: "h-[80%]",
+      width: "w-[18%]",
+      color: "bg-six",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[87.9%]",
+      top: "top-[40%]",
+      height: "h-[60%]",
+      width: "w-[12%]",
+      color: "bg-seven",
+      rounded_tl: "",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+  [
+    {
+      left: "left-[17%]",
+      top: "top-[20%]",
+      height: "h-[80%]",
+      width: "w-[13%]",
+      color: "bg-three",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[70%]",
+      top: "top-[10%]",
+      height: "h-[80%]",
+      width: "w-[18%]",
+      color: "bg-six",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[87.9%]",
+      top: "top-[40%]",
+      height: "h-[60%]",
+      width: "w-[12%]",
+      color: "bg-seven",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[30%]",
+      top: "top-[20%]",
+      height: "h-[50%]",
+      width: "w-[10%]",
+      color: "bg-four",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[40%]",
+      top: "top-[0%]",
+      height: "h-[100%]",
+      width: "w-[30%]",
+      color: "bg-five",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[0%]",
+      top: "top-[0%]",
+      height: "h-[50%]",
+      width: "w-[7%]",
+      color: "bg-one",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+    {
+      left: "left-[7%]",
+      top: "top-[0%]",
+      height: "h-[70%]",
+      width: "w-[10%]",
+      color: "bg-two",
+      rounded_tl: "rounded-5xl",
+      rounded_tr: "",
+      rounded_bl: "",
+      rounded_br: "",
+    },
+  ],
+];
 
 export default App;
